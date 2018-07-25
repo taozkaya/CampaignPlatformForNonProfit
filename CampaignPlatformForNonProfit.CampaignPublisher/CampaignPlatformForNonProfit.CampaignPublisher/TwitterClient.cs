@@ -38,7 +38,7 @@ namespace CampaignPlatformForNonProfit.CampaignPublisher
                  select tsk.Result.MediaID)
                 .ToList();
             Status tweet = await twitterContext.TweetAsync(message, mediaIds);
-            return tweet.Text;
+            return tweet.Text.Substring(tweet.Text.LastIndexOf("https:"));
         }
 
         public async Task<string> TweetAsync(string message, byte[] mediaByteArray, string extension, string mediaType)
@@ -74,7 +74,7 @@ namespace CampaignPlatformForNonProfit.CampaignPublisher
                 Status tweet = await twitterContext.TweetAsync(status, new ulong[] { media.MediaID });
 
                 if (tweet != null)
-                    response = $"Tweet sent: {tweet.Text}";
+                    return tweet.Text.Substring(tweet.Text.LastIndexOf("https:"));
             }
             else
             {

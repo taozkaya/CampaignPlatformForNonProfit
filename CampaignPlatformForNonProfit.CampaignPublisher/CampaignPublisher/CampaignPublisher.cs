@@ -42,6 +42,8 @@ namespace CampaignPublisher
             string response = "";
             if (mediaCategory.Contains("video"))
             {
+             //   if(media.Length <)
+
                 mediaCategory = "tweet_video";
                 mediaType = "video/" + mediaType;
                 response = tc.TweetAsync(message, media, mediaType, mediaCategory).Result;
